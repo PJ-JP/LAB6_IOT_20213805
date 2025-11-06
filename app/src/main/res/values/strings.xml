@@ -4,4 +4,8 @@
         <item>Pendiente</item>
         <item>Completado</item>
     </string-array>
+    <string name="fui_sign_in_with_email">Acceder con email</string>
+    <string name="fui_sign_in_with_google">Acceder con google</string>
+    <string name="fui_sign_in_with_facebook">Acceder con facebook</string>
+    <string name="ok">Ok</string>
 </resources>
