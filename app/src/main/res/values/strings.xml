@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">demo</string>
+    <string name="app_name">lab6</string>
+    <string-array name="estado">
+        <item>Pendiente</item>
+        <item>Completado</item>
+    </string-array>
 </resources>

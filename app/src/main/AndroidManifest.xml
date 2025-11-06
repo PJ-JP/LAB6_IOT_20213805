@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
         <activity
-            android:name=".CrearTareaActivity"
+            android:name=".MainActivity3"
             android:exported="false" />
         <activity
+            android:name=".CrearTareaActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity2"/>
+        <activity
             android:name=".DetallesTareaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity2"/>
         <activity
             android:name=".MainActivity2"
             android:exported="false" />

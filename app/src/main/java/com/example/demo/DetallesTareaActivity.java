@@ -2,6 +2,7 @@ package com.example.demo;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -43,8 +44,19 @@ public class DetallesTareaActivity extends AppCompatActivity {
         EditText etTitulo = findViewById(R.id.editTextTitulo);
         EditText etDescripcion = findViewById(R.id.editTextDescripcion);
         EditText etFechaLimite = findViewById(R.id.editTextFechaLimite);
-        Spinner spEstado = findViewById(R.id.spinner);
 
+        boolean estado= getIntent().getBooleanExtra("estado", false);
+        String Sestado = estado ? "Completado" : "Pendiente";
+
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) binding.spinner.getAdapter(); //desde el xml
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i) != null && adapter.getItem(i).toString().equals(Sestado)) {
+                    binding.spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
 
         etTitulo.setText(titulo);
         etDescripcion.setText(descripcion);

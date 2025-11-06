@@ -31,6 +31,11 @@ public class MainActivity2 extends AppCompatActivity {
     private final List<Tarea> data = new ArrayList<>();
     private TareaAdapter adapter;
     private static FirebaseFirestore db;
+
+    private int totalTareas = 0;
+    private int tareasCompletadas = 0;
+    private int tareasPendientes = 0;
+
     static class Tarea {
         String titulo, fechaLimite, descripcion,docId;
         boolean estado;
@@ -65,6 +70,12 @@ public class MainActivity2 extends AppCompatActivity {
                         li.descripcion=d.getString("descripcion");
                         li.estado= Boolean.TRUE.equals(d.getBoolean("estado"));
                         li.docId=d.getId();
+                        if (li.estado) {
+                            tareasCompletadas++;
+                        } else {
+                            tareasPendientes++;
+                        }
+                        totalTareas++;
                         data.add(li);
                     }
                     adapter.notifyDataSetChanged();
@@ -73,7 +84,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu); // Usa el archivo de menú que creamos
+        inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -84,12 +95,13 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menu_tasks) {
-            Toast.makeText(this, "Opción Tareas seleccionada", Toast.LENGTH_SHORT).show();
-            // Aquí puedes iniciar una nueva actividad o un fragmento para las tareas
             return true;
         } else if (itemId == R.id.menu_summary) {
-            Toast.makeText(this, "Opción Resumen seleccionada", Toast.LENGTH_SHORT).show();
-            // Aquí puedes iniciar una nueva actividad o un fragmento para el resumen
+            Intent intent = new Intent(this, MainActivity3.class);
+            intent.putExtra("totalTareas", totalTareas);
+            intent.putExtra("tareasCompletadas", tareasCompletadas);
+            intent.putExtra("tareasPendientes", tareasPendientes);
+            startActivity(intent);
             return true;
         } else if (itemId == R.id.menu_logout) {
             //Lógica para cerrar sesión
