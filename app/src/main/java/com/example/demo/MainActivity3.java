@@ -24,6 +24,6 @@ public class MainActivity3 extends AppCompatActivity {
         binding.textView5.setText(String.valueOf(totalTareas));
         binding.textView6.setText(String.valueOf(tareasCompletadas));
         binding.textView7.setText(String.valueOf(tareasPendientes));
-        
+
     }
 }
